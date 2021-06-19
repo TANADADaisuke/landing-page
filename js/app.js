@@ -17,8 +17,14 @@
  * Define Global Variables
  * 
 */
-
-
+const sections = document.querySelectorAll('section');
+let sectionList = [];
+for (i = 0; i < sections.length; i++) {
+    sectionList.push({
+        id: sections[i].id,
+        data_nav: sections[i].dataset['nav']
+    });
+}
 /**
  * End Global Variables
  * Start Helper Functions
@@ -34,7 +40,14 @@
 */
 
 // build the nav
+const navbarList = document.querySelector('#navbar__list');
+for (i = 0; i < sectionList.length; i++) {
+    const newList = document.createElement('li');
+    newList.innerHTML = '<a href="#' + sectionList[i].id + '">' +
+        sectionList[i].data_nav + '</a>';
 
+    navbarList.appendChild(newList);
+}
 
 // Add class 'active' to section when near top of viewport
 

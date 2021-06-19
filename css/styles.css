@@ -64,14 +64,56 @@ section {
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
+.navbar__menu {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background: rgba(128, 128, 128, 0.4);
+    font-family: 'Oxygen', Sans-Serif;
+    font-weight: bold;
+}
+
 .navbar__menu ul {
+    width: 100%;
     padding-left: 0;
     margin: 0;
-    text-align: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+@media only screen and (min-width: 560px) {
+    .navbar__menu {
+        padding: 0 60px;
+        box-sizing: border-box;
+    }
+
+    .navbar__menu ul {
+        width: 400px;
+        margin-left: auto;
+    }
 }
 
 .navbar__menu li {
     display: inline-block;
+}
+
+.navbar__menu li a {
+    display: block;
+    color: #fff;
+    padding: 0.5rem;
+    text-decoration: none;
+    position: relative;
+}
+
+.navbar__menu li a::after {
+    content: "";
+    width: 90%;
+    position: absolute;
+    bottom: 6px;
+    left: 5%;
+    border-bottom: 1px solid #cc1;
 }
 
 .navbar__menu .menu__link {
