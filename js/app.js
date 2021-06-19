@@ -18,13 +18,7 @@
  * 
 */
 const sections = document.querySelectorAll('section');
-let sectionList = [];
-for (i = 0; i < sections.length; i++) {
-    sectionList.push({
-        id: sections[i].id,
-        data_nav: sections[i].dataset['nav']
-    });
-}
+const navbarList = document.querySelector('#navbar__list');
 /**
  * End Global Variables
  * Start Helper Functions
@@ -40,7 +34,15 @@ for (i = 0; i < sections.length; i++) {
 */
 
 // build the nav
-const navbarList = document.querySelector('#navbar__list');
+// prepare variables for each nav list
+let sectionList = [];
+for (i = 0; i < sections.length; i++) {
+    sectionList.push({
+        id: sections[i].id,
+        data_nav: sections[i].dataset['nav']
+    });
+}
+// build navbar
 for (i = 0; i < sectionList.length; i++) {
     const newList = document.createElement('li');
     newList.innerHTML = '<a href="#' + sectionList[i].id + '">' +
@@ -48,6 +50,17 @@ for (i = 0; i < sectionList.length; i++) {
 
     navbarList.appendChild(newList);
 }
+// Add evnet listner on navbar list
+navbarList.addEventListener('click', function (event) {
+    if (event.target.nodeName === 'A') {
+        // remove active class from all sections
+        for (i = 0; i < sections.length; i++) {
+            sections[i].classList.remove('your-active-class');
+        }
+        // add active class on clicked section
+        document.querySelector(event.target.getAttribute('href')).classList.add('your-active-class');
+    }
+})
 
 // Add class 'active' to section when near top of viewport
 
