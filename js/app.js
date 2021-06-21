@@ -115,8 +115,16 @@ navbarList.addEventListener('click', function (event) {
 })
 
 // Add class 'active' to section when near top of viewport
-document.addEventListener('scroll', function () {
-    activeViewChecker();
+// To avoid many scroll listener call, set time out for 100ms
+document.addEventListener('scroll', function scrollListener() {
+    // remove scroll listener
+    document.removeEventListener('scroll', scrollListener);
+    // invode activeViewChecker after 100ms
+    setTimeout(activeViewChecker(), 100);
+    // reassign scroll listener after 100ms
+    setTimeout(function () {
+        document.addEventListener('scroll', scrollListener)
+    }, 100);
 })
 
 // Scroll to anchor ID using scrollTO event
