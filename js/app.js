@@ -82,15 +82,6 @@ function activeViewChecker() {
 */
 
 // build the nav
-// prepare variables for each nav list
-let sectionList = [];
-for (let i = 0; i < sections.length; i++) {
-    sectionList.push({
-        id: sections[i].id,
-        data_nav: sections[i].dataset['nav']
-    });
-}
-// build navbar
 for (let i = 0; i < sections.length; i++) {
     // create new li element
     const newList = document.createElement('li');
