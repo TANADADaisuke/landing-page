@@ -17,13 +17,16 @@
  * Define Global Variables
  * 
 */
+
 const sections = document.querySelectorAll('section');
 const navbarList = document.querySelector('#navbar__list');
+
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
+
 function isInView(element) {
     // get element position
     const top = element.getBoundingClientRect().top;
@@ -75,6 +78,7 @@ function activeViewChecker() {
         }
     }
 }
+
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -94,17 +98,6 @@ for (let i = 0; i < sections.length; i++) {
     newList.appendChild(newLink);
     navbarList.appendChild(newList);
 }
-// Add evnet listner on navbar list
-navbarList.addEventListener('click', function (event) {
-    if (event.target.nodeName === 'A') {
-        // remove active class from all sections
-        for (let i = 0; i < sections.length; i++) {
-            sections[i].classList.remove('your-active-class');
-        }
-        // add active class on clicked section
-        document.querySelector(event.target.getAttribute('href')).classList.add('your-active-class');
-    }
-})
 
 // Add class 'active' to section when near top of viewport
 // To avoid many scroll listener call, set time out for 100ms
@@ -120,18 +113,18 @@ document.addEventListener('scroll', function scrollListener() {
 })
 
 // Scroll to anchor ID using scrollTO event
-
+// Add evnet listner on navbar list
+navbarList.addEventListener('click', function (event) {
+    if (event.target.nodeName === 'A') {
+        // prevent default
+        event.preventDefault();
+        // scroll to linked view
+        document.querySelector(event.target.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    }
+})
 
 /**
  * End Main Functions
- * Begin Events
  * 
 */
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
-
 
