@@ -130,9 +130,10 @@ section {
     transition: ease 0.3s all;
 }
 
-.navbar__menu .your-active-class {
+.navbar__menu .your-active-class .menu__link {
     background: #333;
     color: #fff;
+    transition: ease 0.3s all;
 }
 
 /* Header Styles */

@@ -42,9 +42,10 @@ function activateSection(element) {
     element.classList.add('your-active-class');
 
     // give active state on navbar
-    for (let i = 0; i < navbarList.childNodes.length; i++) {
-        if ('#' + element.id === navbarList.childNodes[i].firstChild.getAttribute('href')) {
-            navbarList.childNodes[i].classList.add('your-active-class');
+    const navbarLiList = navbarList.querySelectorAll('li');
+    for (let i = 0; i < navbarLiList.length; i++) {
+        if (element.dataset['nav'] === navbarLiList[i].dataset['nav']) {
+            navbarLiList[i].classList.add('your-active-class');
         }
     }
 }
@@ -54,9 +55,10 @@ function deactivateSection(element) {
     element.classList.remove('your-active-class');
 
     // remove active status from navbar
-    for (let i = 0; i < navbarList.childNodes.length; i++) {
-        if ('#' + element.id === navbarList.childNodes[i].firstChild.getAttribute('href')) {
-            navbarList.childNodes[i].classList.remove('your-active-class');
+    const navbarLiList = navbarList.querySelectorAll('li');
+    for (let i = 0; i < navbarLiList.length; i++) {
+        if (element.dataset['nav'] === navbarLiList[i].dataset['nav']) {
+            navbarLiList[i].classList.remove('your-active-class');
         }
     }
 }
@@ -65,7 +67,7 @@ function activeViewChecker() {
     // loop over each sections and check if the section is in view
     for (let i = 0; i < sections.length; i++) {
         if (isInView(sections[i])) {
-            // activate that section
+            // activate section
             activateSection(sections[i]);
         } else {
             // deactivate section
@@ -73,7 +75,6 @@ function activeViewChecker() {
         }
     }
 }
-
 /**
  * End Helper Functions
  * Begin Main Functions
