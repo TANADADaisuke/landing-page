@@ -90,11 +90,16 @@ for (let i = 0; i < sections.length; i++) {
     });
 }
 // build navbar
-for (let i = 0; i < sectionList.length; i++) {
+for (let i = 0; i < sections.length; i++) {
+    // create new li element
     const newList = document.createElement('li');
-    newList.innerHTML = '<a href="#' + sectionList[i].id + '">' +
-        sectionList[i].data_nav + '</a>';
-
+    newList.setAttribute('data-nav', sections[i].dataset['nav']);
+    // create new anchor element
+    const newLink = document.createElement('a');
+    newLink.classList.add('menu__link');
+    newLink.setAttribute('href', '#' + sections[i].id);
+    newLink.textContent = sections[i].dataset['nav'];
+    newList.appendChild(newLink);
     navbarList.appendChild(newList);
 }
 // Add evnet listner on navbar list
