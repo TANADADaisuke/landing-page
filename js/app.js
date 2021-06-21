@@ -33,7 +33,7 @@ function isInView(element) {
     const height = element.getBoundingClientRect().height;
 
     // check whether the element is in view window
-    if (-height + 40 < top && top < 40) {
+    if (-height + 50 < top && top < 50) {
         return true;
     } else {
         return false;
