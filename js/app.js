@@ -79,6 +79,17 @@ function activeViewChecker() {
     }
 }
 
+function scrollListener() {
+    // remove scroll listener
+    document.removeEventListener('scroll', scrollListener);
+    // invode activeViewChecker after 100ms
+    setTimeout(activeViewChecker(), 100);
+    // reassign scroll listener after 100ms
+    setTimeout(function () {
+        document.addEventListener('scroll', scrollListener)
+    }, 100);
+}
+
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -101,16 +112,7 @@ for (let i = 0; i < sections.length; i++) {
 
 // Add class 'active' to section when near top of viewport
 // To avoid many scroll listener call, set time out for 100ms
-document.addEventListener('scroll', function scrollListener() {
-    // remove scroll listener
-    document.removeEventListener('scroll', scrollListener);
-    // invode activeViewChecker after 100ms
-    setTimeout(activeViewChecker(), 100);
-    // reassign scroll listener after 100ms
-    setTimeout(function () {
-        document.addEventListener('scroll', scrollListener)
-    }, 100);
-})
+document.addEventListener('scroll', scrollListener)
 
 // Scroll to anchor ID using scrollTO event
 // Add evnet listner on navbar list
@@ -118,8 +120,22 @@ navbarList.addEventListener('click', function (event) {
     if (event.target.nodeName === 'A') {
         // prevent default
         event.preventDefault();
+        // remove scroll listenr
+        document.removeEventListener('scroll', scrollListener);
+        // se assign scroll lister after 1000ms
+        setTimeout(function () {
+            document.addEventListener('scroll', scrollListener);
+        }, 1000);
         // scroll to linked view
         document.querySelector(event.target.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        // update active status
+        for (let i = 0; i < sections.length; i++) {
+            if (sections[i].dataset['nav'] === event.target.parentNode.dataset['nav']) {
+                activateSection(sections[i]);
+            } else {
+                deactivateSection(sections[i]);
+            }
+        }
     }
 })
 
