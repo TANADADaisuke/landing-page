@@ -133,6 +133,35 @@ section {
     transition: ease 0.3s all;
 }
 
+/* scroll to top style */
+.scroll__top {
+    position: absolute;
+    top: 90vh;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.scroll__top span {
+    display: block;
+    width: 50%;
+    height: 2px;
+    background: #fff;
+}
+
+.scroll__top span:nth-child(1) {
+    transform: translate(4px, 17px) rotate(-50deg);
+}
+
+.scroll__top span:nth-child(2) {
+    transform: translate(16px, 15px) rotate(50deg);
+}
+
+
 /* Header Styles */
 .page__header {
     background: #fff;

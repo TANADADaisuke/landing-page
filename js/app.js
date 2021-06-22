@@ -157,6 +157,10 @@ navbarList.addEventListener('click', function (event) {
     }
 })
 
+// scroll to top button
+document.querySelector('.scroll__top').addEventListener('click', function () {
+    document.body.scrollIntoView({ behavior: 'smooth' });
+})
 /**
  * End Main Functions
  * 
