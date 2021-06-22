@@ -20,6 +20,7 @@
 
 const sections = document.querySelectorAll('section');
 const navbarList = document.querySelector('#navbar__list');
+const navbar = document.querySelector('.navbar__menu');
 
 /**
  * End Global Variables
@@ -79,15 +80,24 @@ function activeViewChecker() {
     }
 }
 
-function scrollListener() {
+function scrollStatusCheckListener() {
     // remove scroll listener
-    document.removeEventListener('scroll', scrollListener);
+    document.removeEventListener('scroll', scrollStatusCheckListener);
     // invode activeViewChecker after 100ms
     setTimeout(activeViewChecker(), 100);
     // reassign scroll listener after 100ms
     setTimeout(function () {
-        document.addEventListener('scroll', scrollListener)
+        document.addEventListener('scroll', scrollStatusCheckListener)
     }, 100);
+}
+
+function scrollNavbarListener () {
+    // show navbar
+    navbar.classList.remove('hidden');
+    // hide navbar after 1000ms
+    setTimeout(function () {
+        navbar.classList.add('hidden');
+    }, 2000);
 }
 
 /**
@@ -112,7 +122,15 @@ for (let i = 0; i < sections.length; i++) {
 
 // Add class 'active' to section when near top of viewport
 // To avoid many scroll listener call, set time out for 100ms
-document.addEventListener('scroll', scrollListener)
+document.addEventListener('scroll', scrollStatusCheckListener);
+
+// navbar is in view only when users are scrolling (present on page load)
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function () {
+        navbar.classList.add('hidden');
+    }, 2000);
+});
+document.addEventListener('scroll', scrollNavbarListener);
 
 // Scroll to anchor ID using scrollTO event
 // Add evnet listner on navbar list
@@ -121,10 +139,10 @@ navbarList.addEventListener('click', function (event) {
         // prevent default
         event.preventDefault();
         // remove scroll listenr
-        document.removeEventListener('scroll', scrollListener);
+        document.removeEventListener('scroll', scrollStatusCheckListener);
         // se assign scroll lister after 1000ms
         setTimeout(function () {
-            document.addEventListener('scroll', scrollListener);
+            document.addEventListener('scroll', scrollStatusCheckListener);
         }, 1000);
         // scroll to linked view
         document.querySelector(event.target.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
