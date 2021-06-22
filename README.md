@@ -26,4 +26,4 @@ Navigation menu is dynamically created according to the sections by JavaScript. 
 - Dynamically create navigation menu.
 - Set active state on the section in view.
 - Scroll to the anchored section when nav menu is clicked.
-- Hide navigation menu when uses do not scroll the page.
+- Hide navigation menu when users do not scroll the page.
