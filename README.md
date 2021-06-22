@@ -2,10 +2,10 @@
 
 ## Table of Contents
 
-* [Introction](#introduction)
+* [Introduction](#introduction)
 * [Content](#content)
 
-## Indroduction
+## Introduction
 
 This project is one of the milestone on Udacity's [Front End Web Developer](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd0011) Nanodegree program. This project demonstrates how to build a multi-section landing page, which has a dynamically constructed navigation menu based on the content in page.
 
