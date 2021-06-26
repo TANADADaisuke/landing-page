@@ -21,6 +21,8 @@
 const sections = document.querySelectorAll('section');
 const navbarList = document.querySelector('#navbar__list');
 const navbar = document.querySelector('.navbar__menu');
+// store setTimeout ID for scrollNavbarListener
+let scrollNavbarTimer = null
 
 /**
  * End Global Variables
@@ -92,12 +94,22 @@ function scrollStatusCheckListener() {
 }
 
 function scrollNavbarListener () {
+    if (scrollNavbarTimer !== null) {
+        // clear timeout of hideNavber
+        clearTimeout(scrollNavbarTimer);
+    }
     // show navbar
-    navbar.classList.remove('hidden');
+    showNavbar();
     // hide navbar after 1000ms
-    setTimeout(function () {
-        navbar.classList.add('hidden');
-    }, 2000);
+    scrollNavbarTimer = setTimeout(hideNavbar, 2000);
+}
+
+function showNavbar () {
+    navbar.classList.remove('hidden');
+}
+
+function hideNavbar () {
+    navbar.classList.add('hidden');
 }
 
 /**
